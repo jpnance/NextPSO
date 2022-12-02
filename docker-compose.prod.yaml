@@ -1,20 +1,12 @@
 version: '3.6'
 
 services:
-    dev:
-        container_name: nextpso-dev
+    web:
+        container_name: nextpso-web
         image: node:16-alpine
         volumes:
             - .:/app
         working_dir: /app
         ports:
             - $PORT:3000
-        command: npm run dev
-
-    ts:
-        container_name: nextpso-ts
-        image: node:16-alpine
-        volumes:
-            - .:/app
-        working_dir: /app
-        command: npm run ts
+        command: sh -c "npm run build && npm run start"
