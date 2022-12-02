@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+    web:
+        container_name: nextpso-web
+        image: node:14-alpine
+        volumes:
+            - .:/app
+        working_dir: /app
+        ports:
+            - $PORT:$PORT
+        command: echo $PORT
