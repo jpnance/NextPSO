@@ -8,5 +8,6 @@ describe('Sunk Cost Calculator', () => {
 
 	it ('renders a heading', () => {
 		expect(screen.getByRole('heading')).toBeInTheDocument();
+		expect(screen.getByRole('textbox')).toBeInTheDocument();
 	});
 });
