@@ -13,8 +13,11 @@ afterEach(() => {
 
 describe('Sunk Cost Calculator', () => {
 	describe('renders', () => {
-		it('a heading', () => {
-			expect(screen.getByRole('heading')).toBeInTheDocument();
+		it('an appropriate heading', () => {
+			let heading = screen.getByRole('heading');
+
+			expect(heading).toBeInTheDocument();
+			expect(heading).toHaveTextContent('Sunk Cost Calculator');
 		});
 
 		it('an input box', () => {
