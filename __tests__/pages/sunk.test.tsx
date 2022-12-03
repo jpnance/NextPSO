@@ -1,13 +1,24 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Sunk from '../../pages/sunk';
 
-describe('Sunk Cost Calculator', () => {
+beforeEach(() => {
 	render(<Sunk />);
+});
 
-	it ('renders a heading', () => {
-		expect(screen.getByRole('heading')).toBeInTheDocument();
-		expect(screen.getByRole('textbox')).toBeInTheDocument();
+afterEach(() => {
+	cleanup();
+});
+
+describe('Sunk Cost Calculator', () => {
+	describe('renders', () => {
+		it('a heading', () => {
+			expect(screen.getByRole('heading')).toBeInTheDocument();
+		});
+
+		it('an input box', () => {
+			expect(screen.getByRole('textbox')).toBeInTheDocument();
+		});
 	});
 });
