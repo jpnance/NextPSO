@@ -23,5 +23,15 @@ describe('Sunk Cost Calculator', () => {
 		it('an input box', () => {
 			expect(screen.getByRole('textbox')).toBeInTheDocument();
 		});
+
+		it('three output fields', () => {
+			let sunkCostOutputs = screen.getAllByLabelText('Sunk Cost');
+
+			expect(sunkCostOutputs.length).toBe(3);
+
+			sunkCostOutputs.forEach((sunkCostOutput) => {
+				expect(sunkCostOutput).toBeInTheDocument();
+			});
+		});
 	});
 });
