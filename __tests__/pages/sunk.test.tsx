@@ -12,26 +12,35 @@ afterEach(() => {
 });
 
 describe('Sunk Cost Calculator', () => {
-	describe('renders', () => {
-		it('an appropriate heading', () => {
-			let heading = screen.getByRole('heading');
+	it('initially renders a heading, an input box, and three sunk cost output fields initialized to "?"', () => {
+		let heading = screen.getByRole('heading', { name: 'Sunk Cost Calculator' });
 
-			expect(heading).toBeInTheDocument();
-			expect(heading).toHaveTextContent('Sunk Cost Calculator');
-		});
+		expect(heading).toBeInTheDocument();
+		expect(heading).toHaveTextContent('Sunk Cost Calculator');
 
-		it('an input box', () => {
-			expect(screen.getByRole('textbox')).toBeInTheDocument();
-		});
+		expect(screen.getByRole('textbox')).toBeInTheDocument();
 
-		it('three output fields', () => {
-			let sunkCostOutputs = screen.getAllByLabelText('Sunk Cost');
+		let sunkCostOutputs = screen.getAllByLabelText(/sunk cost/i);
 
-			expect(sunkCostOutputs.length).toBe(3);
+		expect(sunkCostOutputs.length).toBe(3);
 
-			sunkCostOutputs.forEach((sunkCostOutput) => {
-				expect(sunkCostOutput).toBeInTheDocument();
-			});
+		sunkCostOutputs.forEach((sunkCostOutput, i) => {
+			expect(sunkCostOutput).toBeInTheDocument();
+			expect(sunkCostOutput).toHaveTextContent('?');
+
+			switch(i) {
+				case 0:
+					expect(sunkCostOutput).toHaveAccessibleName('First Year Sunk Cost');
+					break;
+
+				case 1:
+					expect(sunkCostOutput).toHaveAccessibleName('Second Year Sunk Cost');
+					break;
+
+				case 2:
+					expect(sunkCostOutput).toHaveAccessibleName('Third Year Sunk Cost');
+					break;
+			}
 		});
 	});
 });
