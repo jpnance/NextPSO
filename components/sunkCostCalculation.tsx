@@ -1,12 +1,14 @@
 export interface SunkCostCalculationProps {
-	name: string
+	name: string;
+	baseSalary: number;
+	buyOutRate: number;
 };
 
-export default function SunkCostCalculation({ name }: SunkCostCalculationProps) {
+export default function SunkCostCalculation({ name, baseSalary, buyOutRate }: SunkCostCalculationProps) {
 	return (
 		<article aria-label={`${name} Sunk Cost`}>
 			<h3>{name}</h3>
-			<p>?</p>
+			<p>{baseSalary ? `$${Math.ceil(baseSalary * buyOutRate)}` : '?'}</p>
 		</article>
 	);
 };
