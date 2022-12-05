@@ -73,4 +73,32 @@ describe('Sunk Cost Calculator', () => {
 		expect(sunkCostCalculations[1]).toHaveTextContent('$37');
 		expect(sunkCostCalculations[2]).toHaveTextContent('$19');
 	});
+
+	it('shows question marks when the user types negative numbers into the input box', async () => {
+		let user = userEvent.setup();
+		let inputBox = screen.getByRole('textbox');
+
+		let sunkCostCalculations = screen.getAllByLabelText(/sunk cost/i);
+
+		await user.click(inputBox);
+		await user.keyboard('-10');
+
+		expect(sunkCostCalculations[0]).toHaveTextContent('?');
+		expect(sunkCostCalculations[1]).toHaveTextContent('?');
+		expect(sunkCostCalculations[2]).toHaveTextContent('?');
+	});
+
+	it('shows question marks when the user types non-numbers into the input box', async () => {
+		let user = userEvent.setup();
+		let inputBox = screen.getByRole('textbox');
+
+		let sunkCostCalculations = screen.getAllByLabelText(/sunk cost/i);
+
+		await user.click(inputBox);
+		await user.keyboard('aoeu');
+
+		expect(sunkCostCalculations[0]).toHaveTextContent('?');
+		expect(sunkCostCalculations[1]).toHaveTextContent('?');
+		expect(sunkCostCalculations[2]).toHaveTextContent('?');
+	});
 });
